@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>To-Do List App</title>
+</head>
+
+<body class="bg-gradient-to-tl from-blue-900 to-purple-900 w-screen min-h-screen flex justify-center items-start overflow-x-hidden">
+
+    <!-- To-Do list container starts here -->
+    <div class="px-8 pt-8 pb-4 my-10 bg-white rounded-xl">
+
+        <!-- Heading & Icon -->
+        <header class="flex gap-2 mb-4">
+            <h1 class="font-bold text-2xl">To-Do List</h1>
+            <img src="../Assets/images/icon.png" class="w-7">
+        </header>
+
+        <!-- Input Box & Button -->
+        <div>
+            <input type="text" placeholder="Add your task" spellcheck="false" id="inputBox"
+                class="w-80 outline-none border-none p-4 pl-6 rounded-l-full bg-gray-200">
+            <button class="font-bold tracking-widest bg-blue-500 py-4 px-10 rounded-r-full 
+            active:scale-95 active:bg-blue-600" id="addBtn">Add</button>
+        </div>
+
+        <!-- Task List container -->
+        <div id="taskContainer">
+
+            <!-- Task List added dynamically -->
+        </div>
+    </div>
+    <!-- To-Do list container ends here -->
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

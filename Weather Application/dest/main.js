@@ -50,7 +50,7 @@ function setWeatherDetails() {
     placeEle.innerText = `${place}`;
     humidityEle.innerText = `${humidity}%`;
     windSpeedEle.innerText = `${wind_speed} km/h`;
-    weatherIconEle.src = `../Assets/weather-app-img/images/${weather}.png`;
+    weatherIconEle.src = `./Assets/weather-app-img/images/${weather}.png`;
 }
 
 // Updates weather details based on the provided city name.

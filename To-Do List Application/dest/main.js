@@ -25,7 +25,7 @@ const createTask = (taskObj) => {
     // Set class and attributes for the toggle image (checkbox icon)
     toggleImg.className = "w-5 hover:border-2 hover:border-gray-500 hover:rounded-full";
     toggleImg.setAttribute('data-action', 'toggle');
-    toggleImg.src = taskObj.completed ? "../Assets/images/checked.png" : "../Assets/images/unchecked.png";
+    toggleImg.src = taskObj.completed ? "./Assets/images/checked.png" : "./Assets/images/unchecked.png";
 
     // Append the toggle image to the toggle button
     toggleBtn.appendChild(toggleImg);
@@ -94,7 +94,7 @@ const toggleTaskState = (ele) => {
     const taskPara = ele.querySelector('p');
 
     // Toggle the source of the check box image between checked and unchecked icons
-    checkBoxImg.src = (checkBoxImg.src).includes('unchecked') ? "../Assets/images/checked.png" : "../Assets/images/unchecked.png"
+    checkBoxImg.src = (checkBoxImg.src).includes('unchecked') ? "./Assets/images/checked.png" : "./Assets/images/unchecked.png"
 
     // Toggle the 'line-through' class on the task description paragraph
     taskPara.classList.toggle('line-through')

@@ -456,7 +456,6 @@ categoryList.addEventListener('click', handleSelectedCategory);
 
 // Listens for selected option
 optContainer.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        handleSelectedAnswer(event.target);
-    }
+    const buttonElement = event.target.closest('button') || event.target;
+    handleSelectedAnswer(buttonElement);
 });

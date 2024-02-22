@@ -23,7 +23,7 @@ async function getWeatherDetails(city_name) {
         // Destructure and assign values from the fetched data to the variables. All values at fetched concurrently
         // The Promise.all is used to await multiple asynchronous operations simultaneously.
         [weather, temp, humidity, wind_speed, place] = await Promise.all([
-            data.weather[0].main,
+            (data.weather[0].main).toLowerCase(),
             Math.round(data.main.temp),
             data.main.humidity,
             data.wind.speed,
@@ -58,8 +58,8 @@ async function updateWeather(city_name) {
 
     // Await the completion of the getWeatherDetails function for the specified city
     await getWeatherDetails(city_name);
-    // Await the completion of the setWeatherDetails function to update the UI
-    await setWeatherDetails();
+    // SetWeatherDetails function to update the UI
+    setWeatherDetails();
 }
 // Self-invoking asynchronous function that attempts to get the user's current location
 (async function getCurrentLocation() {
@@ -80,7 +80,7 @@ async function updateWeather(city_name) {
             const lon = position.coords.longitude;
 
             // Fetch city information based on coordinates from OpenWeatherMap API
-            const response = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`);
+            const response = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`);
             const data = await response.json();
 
             // Extract the city name from the API response

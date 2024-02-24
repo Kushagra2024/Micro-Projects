@@ -47,7 +47,7 @@ async function fetchCategoryList() {
     try {
         // Fetch category data from the API
         const response = await fetch('https://opentdb.com/api_category.php');
-        
+
         // Parse the JSON response
         const result = await response.json();
 
@@ -106,29 +106,22 @@ async function fetchQuestions() {
 
         // Process & Store the 'fetched questions & their options' into the 'questions' array
         questions = fetchedArray.map((obj) => {
-            // Add the incorrect answer as an option with 'correct' set to false
-            const option = (obj.incorrect_answers).map((incorrect_answer) => {
-                return {
-                    text: incorrect_answer,
-                    correct: false
-                };
-            })
+            // Add the correct answer into the incorect answer array
+            (obj.incorrect_answers).push(obj.correct_answer);
 
-            // Add the correct answer as an option with 'correct' set to true
-            option.push({
-                text: obj.correct_answer,
-                correct: true
-            });
+            // assign the correct + incorrect answer array to the option variable
+            const option = obj.incorrect_answers;
 
-            // Return an object representing the processed question and its option array
+            // Return an object representing the processed question, its option array and its correct answer
             return {
                 question: obj.question,
-                options: option
+                options: option,
+                correct_answer: obj.correct_answer
             };
         })
 
         // Randomize the order of options for each question
-        questions.forEach(({ question, options }) => {
+        questions.forEach(({ question, options, correct_answer }) => {
 
             const randomIndex = Math.floor(Math.random() * 4);
 
@@ -147,10 +140,10 @@ async function fetchQuestions() {
 function resetState() {
     // Hide button container
     btnDiv.classList.add('hidden');
-    
+
     // Hide next button
     nextBtn.classList.add('hidden');
-    
+
     // Enable the option container to allow user interaction
     optContainer.classList.remove('pointer-events-none');
 
@@ -194,12 +187,12 @@ function generateOptions() {
         const currentQuestion = questions[currQuesIndex];
 
         // Loop through each option in the current question
-        currentQuestion.options.forEach(({ text }) => {
+        currentQuestion.options.forEach((text) => {
 
             // Insert HTML for each option button
             optContainer.insertAdjacentHTML("beforeend",
                 `<button class="flex w-full justify-start bg-teal-300 mb-2 p-4 rounded-md hover:bg-blue-800 hover:text-white cursor-pointer">
-            <p>${text}</p>
+            ${text}
         </button>`);
         })
     }
@@ -262,45 +255,34 @@ async function showQuizContainer() {
  */
 function handleSelectedAnswer(selectedOption) {
 
-    // Variable to store the index of the correct answer in the options array
-    let correctOptionIndex = undefined;
+    // Retrieve the current question's correct answer
+    const correctAnswer = questions[currQuesIndex].correct_answer;
 
-    // Retrieve the current question's options
-    const currentQuestionOptions = questions[currQuesIndex].options;
-
-    // Find the index of the correct answer in the options array
-    currentQuestionOptions.forEach(({ text, correct }, index) => {
-        if (correct) {
-            correctOptionIndex = index
-        }
-    })
-
-    // Retrieve the button element corresponding to the correct answer
-    const correctOption = optContainer.querySelectorAll('button')[correctOptionIndex];
+    // Retrieve the text corresponding to the selected answer
+    const selectedText = selectedOption.innerText;
 
     // Check if the selected option is the correct answer
-    if (selectedOption === correctOption) {
+    if (correctAnswer === selectedText) {
         // Apply styles for a correct answer
-        selectedOption.classList.add('bg-green-800');
-        selectedOption.classList.add('active:bg-green-800');
-        selectedOption.classList.add('focus:bg-green-800');
-        selectedOption.classList.add('outline-none');
+        selectedOption.classList.add('bg-green-600', 'active:bg-green-600', 'focus:bg-green-600', 'outline-none');
 
         // Increment the score for correct answers
         score++;
     }
     else {
         // Apply styles for an incorrect answer
-        selectedOption.classList.add('bg-red-800');
-        selectedOption.classList.add('active:bg-red-800');
-        selectedOption.classList.add('focus:bg-red-800');
-        selectedOption.classList.add('outline-none');
-
+        selectedOption.classList.add('bg-red-600', 'active:bg-red-600', 'focus:bg-red-600', 'outline-none')
+        
         // Highlight the correct answer
-        correctOption.classList.remove('bg-teal-300');
-        correctOption.classList.add('text-white');
-        correctOption.classList.add('bg-green-800');
+        const options = optContainer.querySelectorAll('button');
+        options.forEach((btn) => {
+            if (btn.innerText === correctAnswer) {
+                btn.classList.remove('bg-teal-300');
+                btn.classList.add('text-white', 'bg-green-600');
+            }
+        })
     }
+
     // Adjust styles for both correct and incorrect answers
     selectedOption.classList.remove('bg-teal-300');
     selectedOption.classList.add('text-white');
@@ -382,7 +364,7 @@ function handleSubmitButton() {
     // Hide the submit button and quiz container
     submitBtn.classList.add('hidden');
     quizContainer.classList.add('hidden');
-    
+
     // Show the result container
     resultDiv.classList.remove('hidden');
 
@@ -395,13 +377,13 @@ function handleSubmitButton() {
 
 // Function to handle the finish button click
 function handleFinishButton() {
-    
+
     // Reset quiz state
     score = 0;
     currQuesIndex = 0;
     categoryId = '';
     difficulty = 'easy';
-    
+
     // Clear the questions array
     questions.length = 0;
 
@@ -456,6 +438,5 @@ categoryList.addEventListener('click', handleSelectedCategory);
 
 // Listens for selected option
 optContainer.addEventListener('click', (event) => {
-    const buttonElement = event.target.closest('button') || event.target;
-    handleSelectedAnswer(buttonElement);
+    handleSelectedAnswer(event.target);
 });

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dest/style.css">
+    <title>Get your Password</title>
+</head>
+
+<body class="bg-gray-950 min-w-[380px]">
+    <div class="min-h-screen py-4 px-4 grid grid-cols-1 space-y-8
+    md:grid-cols-4 md:items-center md:space-y-0">
+
+        <!-- heading -->
+        <h1 class="text-2xl max-w-[310px] mx-auto font-medium text-white col-span-1 cursor-default md:col-span-2
+        lg:text-3xl">
+            Get your <span class="inline-block mb-2 text-3xl font-bold text-teal-300 border-b-2 border-teal-300 whitespace-nowrap
+                lg:text-5xl">
+                Random Password</span> <span class="whitespace-nowrap">here &rarr;</span>
+        </h1>
+
+        <!-- Password container starts here -->
+        <div class="max-w-sm w-full text-gray-200 ring-2 ring-blue-950 rounded-sm p-8 space-y-10 mx-auto col-span-1
+        md:col-span-2">
+
+            <!-- password display -->
+            <div class="w-full flex">
+                <!-- password box -->
+                <input type="text" placeholder="password" spellcheck="false" readonly id="pass_display"
+                    class="px-4 py-2 pr-16 flex-1 rounded-md border-none outline-none font-semibold bg-slate-950 ring-2 ring-blue-950 cursor-default tracking-wide">
+
+                <!-- copy button -->
+                <button class="group bg-slate-950 rounded-r-md -ml-12 px-4 py-2 ring-2 ring-blue-950 font-semibold 
+                disabled:text-gray-500 disabled:bg-slate-950 disabled:pointer-events-none
+                hover:bg-teal-300 hover:text-black  
+                active:scale-95 active:transition duration-150" id="copy_btn" disabled>
+                    <!-- copy text -->
+                    <span class="hidden md:inline-block">copy</span>
+
+                    <!-- copy svg -->
+                    <span class="md:hidden">
+                        <span class="hidden group-disabled:inline">
+                            <svg fill="#6b7280" height="20px" width="20px" version="1.1" id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 352.804 352.804" xml:space="preserve">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            d="M318.54,57.282h-47.652V15c0-8.284-6.716-15-15-15H34.264c-8.284,0-15,6.716-15,15v265.522c0,8.284,6.716,15,15,15h47.651 v42.281c0,8.284,6.716,15,15,15H318.54c8.284,0,15-6.716,15-15V72.282C333.54,63.998,326.824,57.282,318.54,57.282z M49.264,265.522V30h191.623v27.282H96.916c-8.284,0-15,6.716-15,15v193.24H49.264z M303.54,322.804H111.916V87.282H303.54V322.804 z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="inline group-disabled:hidden group-hover:hidden">
+                            <svg fill="#fff" height="20px" width="20px" version="1.1" id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 352.804 352.804" xml:space="preserve">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            d="M318.54,57.282h-47.652V15c0-8.284-6.716-15-15-15H34.264c-8.284,0-15,6.716-15,15v265.522c0,8.284,6.716,15,15,15h47.651 v42.281c0,8.284,6.716,15,15,15H318.54c8.284,0,15-6.716,15-15V72.282C333.54,63.998,326.824,57.282,318.54,57.282z M49.264,265.522V30h191.623v27.282H96.916c-8.284,0-15,6.716-15,15v193.24H49.264z M303.54,322.804H111.916V87.282H303.54V322.804 z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="hidden group-hover:inline">
+                            <svg fill="#000" height="20px" width="20px" version="1.1" id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 352.804 352.804" xml:space="preserve">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g>
+                                        <path
+                                            d="M318.54,57.282h-47.652V15c0-8.284-6.716-15-15-15H34.264c-8.284,0-15,6.716-15,15v265.522c0,8.284,6.716,15,15,15h47.651 v42.281c0,8.284,6.716,15,15,15H318.54c8.284,0,15-6.716,15-15V72.282C333.54,63.998,326.824,57.282,318.54,57.282z M49.264,265.522V30h191.623v27.282H96.916c-8.284,0-15,6.716-15,15v193.24H49.264z M303.54,322.804H111.916V87.282H303.54V322.804 z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- password controllers -->
+            <div>
+                <!-- password input parameters -->
+                <div class="space-y-4">
+
+                    <!-- password length input -->
+                    <div class="ring-1 ring-blue-950 rounded-sm px-4 py-2 grid grid-cols-2">
+                        <label for="pass_length" class="col-span-1 mb-2">Length</label>
+                        <p class="col-span-1 text-end" id="pass_length__value">8</p>
+                        <input type="range" name="pass_length" id="pass_length" min="6" max="30" value="8"
+                            class="appearance-none my-2 bg-teal-300 rounded-lg h-1 col-span-2 outline-none border-n">
+                    </div>
+
+                    <!-- password lowercase letter input -->
+                    <div class="flex justify-between ring-1 ring-blue-950 rounded-sm px-4 py-3">
+                        <p class="cursor-default">Lowercase Letters</p>
+                        <input type="checkbox" id="lowercase" class="toggle_input" checked>
+                        <label for="lowercase" class="toggle_trackpad">
+                            <span class="toggle_thumb"></span>
+                        </label>
+                    </div>
+
+                    <!-- password uppercase letter input -->
+                    <div class="flex justify-between ring-1 ring-blue-950 rounded-sm px-4 py-3">
+                        <p class="cursor-default">Uppercase Letters</p>
+                        <input type="checkbox" id="uppercase" class="toggle_input">
+                        <label for="uppercase" class="toggle_trackpad">
+                            <span class="toggle_thumb"></span>
+                        </label>
+                    </div>
+
+                    <!-- password digit input -->
+                    <div class="flex justify-between ring-1 ring-blue-950 rounded-sm px-4 py-3">
+                        <p class="cursor-default">Digits</p>
+                        <input type="checkbox" id="digit" class="toggle_input">
+                        <label for="digit" class="toggle_trackpad">
+                            <span class="toggle_thumb"></span>
+                        </label>
+                    </div>
+
+                    <!-- password special charecters input -->
+                    <div class="flex justify-between ring-1 ring-blue-950 rounded-sm px-4 py-3">
+                        <p class="cursor-default">Special Charecters</p>
+                        <input type="checkbox" id="special_chars" class="toggle_input">
+                        <label for="special_chars" class="toggle_trackpad">
+                            <span class="toggle_thumb"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- password generation button -->
+                <div class="relative w-fit mx-auto mt-10 group">
+                    <div
+                        class="absolute inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 blur-md opacity-25 rounded-md group-hover:opacity-100 group-hover:duration-100 duration-1000 ease-linear">
+                    </div>
+                    <button
+                        class="relative bg-gray-950 px-4 py-2 text-gray-500 font-semibold rounded-md group-hover:text-gray-300 transition duration-100 ease-linear active:border-none active:outline-none focus:border-none focus:outline-none outline-none"
+                        id="generate_btn">Generate
+                        Password
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Password container ends here -->
+
+        <!-- Alert box -->
+        <div id="alert_box" class="fixed top-0 left-0 w-full h-full z-10 hidden justify-center items-start">
+            <div class="font-regular min-w-[260px] rounded-lg bg-gradient-to-tr from-red-600 to-red-400 px-4 py-4 text-base text-white flex justify-center items-center"
+                data-dismissible="alert">
+                <div class="mx-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                        class="h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="mx-2 cursor-default mb-1">Sorry, password cannot be empty</div>
+                <div class="w-max rounded-lg transition-all hover:bg-white hover:bg-opacity-20"
+                    data-dismissible-target="alert">
+                    <div role="button" class="w-max">
+                        <button id="close_alert_btn"
+                            class="select-none rounded-lg py-2 px-3 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:bg-white/10 active:bg-white/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button" data-ripple-dark="true">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="./dest/main.js"></script>
+</body>
+
+</html>
